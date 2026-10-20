@@ -36,6 +36,8 @@ Point your MCP client at the stdio command above. For the hosted copy, connect y
 
 `src/worker.ts` is a Cloudflare Worker (see `wrangler.toml`). It serves the shipped library only, embedded into `src/rubrics.generated.ts` by `scripts/gen-rubrics.mjs`. That generated file is a build artifact (gitignored, not committed): `npm run build` and `npm run deploy` both run the generator first. A GitHub-connected Cloudflare deploy must likewise run `npm run gen` as its build step before `wrangler deploy`.
 
+The hosted copy is rate limited to 100 requests per minute per client IP, through the Workers Rate Limiting binding declared in `wrangler.toml`; over the limit the Worker answers 429. A normal MCP session uses a handful of requests at connect and a few per review, so the limit only trips on loops and scrapers. Counters are per Cloudflare location and eventually consistent, and the check fails open, so a limiter problem never breaks a tool call. The local stdio server has no limit.
+
 ## Layout
 
 - `src/frontmatter.ts`: the small frontmatter reader for the rubric format.
