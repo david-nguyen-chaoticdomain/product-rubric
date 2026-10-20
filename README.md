@@ -26,7 +26,7 @@ A rubric standardizes the questions, the criteria, and the shape of the report. 
 
 ## The library
 
-The library has three categories: product design, with seven rubrics that judge what a team ships; product research, with four that judge how a team learns; and product management, with four that judge how a team decides what to build and in what order. Fifteen rubrics in total.
+The library has four categories: product design, with seven rubrics that judge what a team ships; product research, with four that judge how a team learns; product management, with five that judge how a team decides what to build and in what order; and product marketing, with four that judge how a team takes it to market. Twenty rubrics in total.
 
 Product design:
 
@@ -57,6 +57,16 @@ Product management:
 | Roadmap Review | Reviews a roadmap for outcome framing instead of feature lists, traceability to strategy, and dates that are honest about their certainty | Standard | Ready |
 | Problem Statement Review | Reviews a problem statement: a specific person, evidence it exists, the cost of doing nothing, and no solution smuggled into the framing | Simple | Ready |
 | User Story Review | Reviews a user story and its acceptance criteria against the INVEST attributes, with criteria a tester can actually check | Simple | Ready |
+| Project Plan Review | Reviews a project plan before a team commits to it: verifiable milestones, estimates that take the outside view, a visible critical path, and a living register of risks, assumptions, issues, and dependencies | Deep | Ready |
+
+Product marketing:
+
+| Rubric | What it does | Level | Status |
+| --- | --- | --- | --- |
+| Positioning Review | Reviews a positioning document against the five components of effective positioning: real competitive alternatives, actually unique attributes, value with proof, a specific best-fit customer, and a category that was chosen rather than defaulted into | Standard | Ready |
+| Messaging Review | Reviews a messaging document: whether it leads with an insight instead of the product, lets the differentiated value carry the hierarchy, attaches proof to its claims, and closes with a specific ask | Standard | Ready |
+| Launch Plan Review | Reviews a launch plan: the tier named and the effort matched to it, every audience with a message and a moment, internal teams enabled before launch day, and risk, rollback, and a slipping date planned for | Deep | Ready |
+| Battlecard Review | Reviews a competitive battlecard: claims about the competitor sourced and dated, their strengths stated honestly, why we win and why we lose both covered, and talk tracks a rep can use in the middle of a call | Simple | Ready |
 
 The `fixtures/` folder holds fictional product screens made for this repository, each with a brief and an answer key of the problems deliberately present. They give new users something to run a rubric against immediately, and they let maintainers check that a rubric edit still catches what it should.
 
