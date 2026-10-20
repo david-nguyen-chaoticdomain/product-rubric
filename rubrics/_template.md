@@ -51,7 +51,7 @@ If this rubric has no scores, say so here, and state that the AI must not invent
 
 ## Output format
 
-<!-- Give the exact structure the AI must return: the order of the parts, what each part contains, and how findings are labeled. End the structure with a closing line or section naming the highest-impact fixes.
+<!-- Give the exact structure the AI must return: the order of the parts, what each part contains, and how findings are labeled. End the structure with a closing line or section naming the highest-impact fixes, and then the tracking summary block (see FORMAT.md, "The tracking summary block"): specify its counts line in this rubric's vocabulary, its gate line if this rubric's verdict has gate criteria, and its result line.
 
 Recommended: include one calibrated example finding written the way this rubric wants, and one vague finding marked as not acceptable. Delete this comment when the section is written. -->
 

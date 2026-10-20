@@ -85,6 +85,16 @@ Example of a finding at the standard this rubric expects:
 - Acceptable: "Needs work: the lead pillar claims the product 'removes the busywork from compliance.' The proof beneath it is one testimonial praising the support team. Either the claim shrinks to what the proof carries, or the document needs the measured result it implies, such as the hours a named customer stopped spending on audit preparation, with the customer and date attached."
 - Not acceptable: "The messaging needs more social proof." (It names no claim, no proof gap, and no repair.)
 
+Finally, end the report with the tracking summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
+
+```
+Rubric summary, for tracking
+Rubric: Messaging Review v1.0 · Date: {the date of this run} · Artifact: {the artifact's name as given in the request, or: not named}
+Criteria: Holds {n} · Needs work {n} · Missing {n}
+Gate criteria not met: {the criteria whose grade held the verdict below Fit to publish and sell from, or: none}
+Result: {the overall verdict, exactly as stated at the top of this report}
+```
+
 ## Honesty rules
 
 - Judge the message, not the product and not the positioning. Where the message faithfully expresses positioning that looks weak, say that the weakness sits upstream and name the Positioning Review as its venue; do not quietly rewrite the strategy inside a messaging finding.

@@ -87,6 +87,15 @@ Return the evaluation in this structure, in Markdown:
    - 2 to 4 findings. Label each finding a strength or an issue. Every finding must name a specific element visible in the design and say what about it supports the judgment. Do not write findings that could apply to any design.
 3. A closing section, **Highest impact fixes**, listing the three changes that would most improve the overall score, in priority order.
 
+Finally, end the report with the tracking summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
+
+```
+Rubric summary, for tracking
+Rubric: Design Principles Score v1.0 · Date: {the date of this run} · Artifact: {the artifact's name as given in the request, or: not named}
+Principles: Scored {n} of 7 · Not judged {n}
+Result: {overall score}/100, the average of the scored principles as a percentage
+```
+
 ## Honesty rules
 
 - Judge only what is visible in the input. Do not invent elements, states, or behaviors that are not shown, and do not assume what happens after a tap or click unless the flow shows it.

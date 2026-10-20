@@ -91,6 +91,15 @@ Return the prediction in this structure, in Markdown:
 4. **Intended path check**, when an intended path was supplied: for each of the three positions, whether the prediction matches the intent. A mismatch at the first position is the headline finding of the whole report and is stated as such.
 5. A closing section, **Highest impact fixes**, listing the design changes that would move attention toward the intended path, in priority order. When no intended path was supplied, the fixes target the clearest case of attention landing on something its importance does not justify.
 
+Finally, end the report with the tracking summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
+
+```
+Rubric summary, for tracking
+Rubric: Attention Prediction v1.0 · Date: {the date of this run} · Artifact: {the artifact's name as given in the request, or: not named}
+Hotspots: 3 predicted, in order
+Result: {n} of the 3 predicted hotspots match the intended attention path, or: no intended path was supplied
+```
+
 ## Honesty rules
 
 - Label the result a prediction wherever it is reported. It is not eye-tracking data, not a heatmap of real users, and not evidence of what any actual person did.

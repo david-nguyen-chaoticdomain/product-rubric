@@ -69,6 +69,28 @@ Give the exact structure the AI must return: the order of the parts, what each p
 
 A calibrated example inside this section helps: one finding written the way the rubric wants, and one vague finding marked as not acceptable.
 
+Every rubric's output format also ends, after the closing fixes, with the tracking summary block described in the next section. The rubric's own Output format section specifies the block's counts and result lines in the block's fixed shape.
+
+### The tracking summary block
+
+The last element of every report is a small block in a fixed form, headed "Rubric summary, for tracking." Its purpose is record keeping: a team that runs a rubric repeatedly can keep the blocks and watch its criterion results change over time. That is how a team answers "are we improving?" with these reports. Not from any single run, which is one structured judgment and carries the noise of one, but from the trend across many runs of the same rubric at the same version: criteria migrating from the lowest grade to the highest, gate failures getting rarer, flaw counts by severity shrinking.
+
+The block has a fixed shape:
+
+```
+Rubric summary, for tracking
+Rubric: {name} v{version} · Date: {date of the run} · Artifact: {the artifact's name as given, or: not named}
+{counts line}
+{gate line, when the rubric has gate criteria}
+{result line}
+```
+
+- The counts line tallies the report's own judgments in the rubric's own vocabulary: criteria at each grade, findings at each severity, flaws at each rating, claims audited, whatever the rubric produces. It never converts those tallies into a new score.
+- The gate line, for rubrics whose overall verdict has gate criteria, names the gate criteria that were not met, or says none. A team tracking only the result line would miss a gate that keeps failing while everything else improves; the gate line exists so that cannot happen quietly.
+- The result line repeats the report's overall result exactly: the verdict in the rubric's own words, or the native score for a rubric that scores. It introduces no rating the rubric does not already produce.
+
+Every value in the block is copied or counted from the judgments in the same report. If a value cannot be derived from the report, the block says so instead of estimating. The rubric version in the first line is part of the record: when a rubric's criteria or scale change, its version rises, and trend lines should be read within a version.
+
 ### 5. Honesty rules
 
 List the claims the AI must not make while running this rubric. Cover what the evaluation cannot establish (for example, how real users will behave), what the AI must not invent (elements, states, or data that are not in the input), and how the AI should label predictions as predictions.

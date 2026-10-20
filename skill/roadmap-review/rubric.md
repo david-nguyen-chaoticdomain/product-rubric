@@ -85,6 +85,16 @@ Example of a finding at the standard this rubric expects:
 - Acceptable: "Needs work: the Later column names fourteen features with the same specificity as the Now column, including 'AI summaries' with a ship month, though no design work exists for it yet. Read by sales, this is a commitment. The repair is to restate Later items as outcomes ('shorten the weekly reporting task') and drop dates beyond the next quarter."
 - Not acceptable: "The roadmap feels more like a feature list." (It names no items, no gap, and no repair.)
 
+Finally, end the report with the tracking summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
+
+```
+Rubric summary, for tracking
+Rubric: Roadmap Review v1.0 · Date: {the date of this run} · Artifact: {the artifact's name as given in the request, or: not named}
+Criteria: Holds {n} · Needs work {n} · Missing {n}
+Gate criteria not met: {the criteria whose grade held the verdict below Can be planned against, or: none}
+Result: {the overall verdict, exactly as stated at the top of this report}
+```
+
 ## Honesty rules
 
 - Review the document, not the strategy and not the team. Whether the reviewer would have chosen these items is outside the review; whether the document states its choices honestly is the whole of it.

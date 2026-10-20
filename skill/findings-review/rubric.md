@@ -94,6 +94,16 @@ Example of a finding at the standard this rubric expects:
 - Acceptable: "Partly supported: the readout claims 'users complete checkout without help.' The evidence shown is four of six participants completing it, one needing two hints (mentioned in the appendix), and one abandoning, who does not appear in the findings section. The claim the evidence supports is 'most participants in this study completed checkout, with the payment step causing the failures.'"
 - Not acceptable: "The findings feel overstated in places." (It names no claim, no evidence, and no repair.)
 
+Finally, end the report with the tracking summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
+
+```
+Rubric summary, for tracking
+Rubric: Findings Review v1.0 · Date: {the date of this run} · Artifact: {the artifact's name as given in the request, or: not named}
+Criteria: Holds {n} · Needs work {n} · Missing {n} · Claims audited {n}: Supported {n} · Partly supported {n} · Unsupported {n}
+Gate criteria not met: {the criteria whose grade held the verdict below Can be relied on, or: none}
+Result: {the reliance verdict, exactly as stated at the top of this report}
+```
+
 ## Honesty rules
 
 - Audit the document, not the researcher. Every finding is about a passage and its support, never about the author's rigor, motives, or skill.

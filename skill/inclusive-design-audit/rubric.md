@@ -110,6 +110,15 @@ Return the audit in this structure, in Markdown:
    - For each of the four checklist items: the item, whether it is met or not met, and one finding naming the specific element in the design that supports the judgment.
 3. A closing section, **Highest impact fixes**, listing the three changes that would most raise the overall score, in priority order.
 
+Finally, end the report with the tracking summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
+
+```
+Rubric summary, for tracking
+Rubric: Inclusive Design Audit v1.0 · Date: {the date of this run} · Artifact: {the artifact's name as given in the request, or: not named}
+Principles: Scored {n} of 5 · Not judged {n}
+Result: {overall score}/10
+```
+
 ## Honesty rules
 
 - Judge only what is visible in the input. Do not invent people, imagery, copy, or options that are not shown, and do not assume how a flow behaves beyond what the input shows.

@@ -53,3 +53,10 @@
 9. Q3: replace exact first-week recall with a last-7-days ranged question, or drop it and use product analytics.
 10. Q10: fix the overlapping invoice ranges and add a "did not send any" option.
 11. Q12: remove the duplicate satisfaction question.
+
+```
+Rubric summary, for tracking
+Rubric: Survey Review v1.0 · Date: 2026-10-20 · Artifact: Post-purchase survey questionnaire (Ledgerline fixture)
+Questions: Reviewed 12 · Invalidating flaws 1 · Biasing flaws 8 · Burden flaws 1 · Sound 2
+Result: 10 of 12 questions need revision before the survey is fielded
+```

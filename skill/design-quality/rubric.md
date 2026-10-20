@@ -109,6 +109,15 @@ Example of a finding at the standard this rubric expects:
 - Acceptable: "Issue (Flow quality): the payment frame asks for a billing address before the order total is shown anywhere in the journey, so the step demands commitment before the user has the information the commitment depends on."
 - Not acceptable: "The flow could be smoother." (It names no frame, no decision, and nothing a designer could act on.)
 
+Finally, end the report with the tracking summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
+
+```
+Rubric summary, for tracking
+Rubric: Design Quality v1.0 · Date: {the date of this run} · Artifact: {the artifact's name as given in the request, or: not named}
+Dimensions: Scored {n} of 7 · Not judged {n}
+Result: {overall score}/100 across the dimensions that could be judged
+```
+
 ## Honesty rules
 
 - Judge the submission, not the designer, and not the product's reputation. The same frames from a famous company and from an unknown one get the same scores.

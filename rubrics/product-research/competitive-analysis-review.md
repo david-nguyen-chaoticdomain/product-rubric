@@ -85,6 +85,16 @@ Example of a finding at the standard this rubric expects:
 - Acceptable: "Needs work: the analysis states that Fieldnotes 'charges per seat with no free tier,' citing a roundup article. The competitor's pricing page, checked during this review, shows a free tier for up to three seats. The claim the evidence supports is 'free for small teams; per-seat pricing begins at the Team plan,' with the page and the date named in the document."
 - Not acceptable: "The competitive research could be more thorough." (It names no claim, no gap, and no repair.)
 
+Finally, end the report with the tracking summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
+
+```
+Rubric summary, for tracking
+Rubric: Competitive Analysis Review v1.0 · Date: {the date of this run} · Artifact: {the artifact's name as given in the request, or: not named}
+Criteria: Holds {n} · Needs work {n} · Missing {n}
+Gate criteria not met: {the criteria whose grade held the verdict below Can be relied on, or: none}
+Result: {the reliance verdict, exactly as stated at the top of this report}
+```
+
 ## Honesty rules
 
 - Audit the document, not the competitors and not the author. Every finding is about a claim and its support, never about a rival's quality or the analyst's diligence as a person.
