@@ -1,0 +1,39 @@
+{
+  "name": "product-rubric-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for ProductRubric, the open library of evaluation rubrics for product teams. Serves rubric files to any MCP client through list_rubrics, get_rubric, and about tools, plus prompts and resources.",
+  "license": "Apache-2.0",
+  "author": "David Nguyen",
+  "homepage": "https://github.com/productrubric/product-rubric",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/productrubric/product-rubric.git",
+    "directory": "mcp"
+  },
+  "type": "module",
+  "bin": {
+    "product-rubric-mcp": "./dist/stdio.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "gen": "node scripts/gen-rubrics.mjs",
+    "build": "npm run gen && tsc -p tsconfig.json",
+    "start": "node dist/stdio.js",
+    "deploy": "npm run gen && wrangler deploy"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.8.0",
+    "wrangler": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

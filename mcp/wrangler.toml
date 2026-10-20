@@ -1,0 +1,11 @@
+# Cloudflare Worker for the hosted ProductRubric MCP server.
+# Deploys the fetch entry in src/worker.ts and serves the shipped library
+# (embedded at build time by scripts/gen-rubrics.mjs) at
+# https://mcp.productrubric.com
+name = "product-rubric-mcp"
+main = "src/worker.ts"
+compatibility_date = "2026-10-01"
+
+[[routes]]
+pattern = "mcp.productrubric.com"
+custom_domain = true
