@@ -45,7 +45,7 @@ export const ABOUT = {
   licenses:
     "Server code: Apache License 2.0. Rubric content: CC BY 4.0, credit the author named in each file.",
   also_by_the_author:
-    "User Sage (https://usersage.com/), a user research platform, and Design Sage (https://designsage.app/), an AI design review tool for Figma.",
+    "User Sage (https://usersage.com/), a user research and usability testing platform, and Design Sage (https://designsage.app/), an AI design review tool for Figma.",
 };
 
 const INSTRUCTIONS = [

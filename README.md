@@ -62,4 +62,4 @@ The code in this repository (the MCP server and the scripts) is released under t
 
 ## Maintainer
 
-ProductRubric is created and maintained by [David Nguyen](https://davidnguyen.com/), founder of [User Sage](https://usersage.com/), a user research platform, and maker of [Design Sage](https://designsage.app/), an AI design review tool for Figma.
+ProductRubric is created and maintained by [David Nguyen](https://davidnguyen.com/), founder of [User Sage](https://usersage.com/), a user research and usability testing platform, and maker of [Design Sage](https://designsage.app/), an AI design review tool for Figma.
