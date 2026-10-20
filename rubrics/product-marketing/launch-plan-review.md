@@ -102,10 +102,10 @@ Example of a finding at the standard this rubric expects:
 - Acceptable: "Missing: the plan schedules the announcement email, the partner briefing, and the press embargo lift for the same morning, and the partner section promises partners 'advance notice' without defining it. Support's FAQ is dated the day after launch. On current sequencing, partners and support both meet this launch in public, which is the failure the readiness criterion exists to prevent."
 - Not acceptable: "The launch plan needs more coordination." (It names no audience, no date, and no fix.)
 
-Finally, end the report with the tracking summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
+Finally, end the report with the summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
 
 ```
-Rubric summary, for tracking
+Rubric summary
 Rubric: Launch Plan Review v1.0 · Date: {the date of this run} · Artifact: {the artifact's name as given in the request, or: not named}
 Criteria: Ready {n} · Needs work {n} · Missing {n} · Not judged {n}
 Gate criteria not met: {the criteria whose grade held the verdict below Ready to launch, or: none}

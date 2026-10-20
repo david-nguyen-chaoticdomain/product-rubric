@@ -69,16 +69,16 @@ Give the exact structure the AI must return: the order of the parts, what each p
 
 A calibrated example inside this section helps: one finding written the way the rubric wants, and one vague finding marked as not acceptable.
 
-Every rubric's output format also ends, after the closing fixes, with the tracking summary block described in the next section. The rubric's own Output format section specifies the block's counts and result lines in the block's fixed shape.
+Every rubric's output format also ends, after the closing fixes, with the summary block described in the next section. The rubric's own Output format section specifies the block's counts and result lines in the block's fixed shape.
 
-### The tracking summary block
+### The summary block
 
-The last element of every report is a small block in a fixed form, headed "Rubric summary, for tracking." Its purpose is record keeping: a team that runs a rubric repeatedly can keep the blocks and watch its criterion results change over time. That is how a team answers "are we improving?" with these reports. Not from any single run, which is one structured judgment and carries the noise of one, but from the trend across many runs of the same rubric at the same version: criteria migrating from the lowest grade to the highest, gate failures getting rarer, flaw counts by severity shrinking.
+The last element of every report is a small block in a fixed form, headed "Rubric summary." It gives every report a small, uniform record of itself, usable for whatever the team needs records for. A team that runs a rubric repeatedly can keep the blocks and watch its criterion results change over time, which is how a team answers "are we improving?" with these reports. Not from any single run, which is one structured judgment and carries the noise of one, but from the trend across many runs of the same rubric at the same version: criteria migrating from the lowest grade to the highest, gate failures getting rarer, flaw counts by severity shrinking.
 
 The block has a fixed shape:
 
 ```
-Rubric summary, for tracking
+Rubric summary
 Rubric: {name} v{version} · Date: {date of the run} · Artifact: {the artifact's name as given, or: not named}
 {counts line}
 {gate line, when the rubric has gate criteria}

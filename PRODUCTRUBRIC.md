@@ -9,7 +9,7 @@ A project can carry its own PRODUCTRUBRIC.md at its root to declare which rubric
 - Run the rubric exactly as written. Do not merge criteria, skip sections, or soften the honesty rules.
 - Report results in the output format the rubric specifies, including its closing highest-impact fixes.
 - When two rubrics cover the same screen, report each evaluation separately under its rubric's name, so results stay comparable across runs and across AI tools.
-- Every report ends with the tracking summary block the rubric's output format specifies. When a team tracks results over time, the block is the record to keep: it is tallied from the report's own judgments, and the rubric version it names is what makes runs comparable.
+- Every report ends with the summary block the rubric's output format specifies. When a team tracks results over time, the block is the record to keep: it is tallied from the report's own judgments, and the rubric version it names is what makes runs comparable.
 
 ## product-design
 

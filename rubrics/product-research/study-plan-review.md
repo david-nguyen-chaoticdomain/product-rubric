@@ -98,10 +98,10 @@ Example of a finding at the standard this rubric expects:
 - Acceptable: "Needs work (Participants match the questions): the screener recruits 'people who shop online weekly,' but research question 2 asks why shoppers abandon a first purchase. People who shop weekly have, by definition, completed purchases; the screener should recruit people who started a first purchase in the last 90 days and did not finish it."
 - Not acceptable: "The participant criteria could be more targeted." (It names no question, no mismatch, and no fix.)
 
-Finally, end the report with the tracking summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
+Finally, end the report with the summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
 
 ```
-Rubric summary, for tracking
+Rubric summary
 Rubric: Study Plan Review v1.0 · Date: {the date of this run} · Artifact: {the artifact's name as given in the request, or: not named}
 Criteria: Ready {n} · Needs work {n} · Missing {n} · Not judged {n}
 Gate criteria not met: {the criteria whose grade held the verdict below Ready to field, or: none}

@@ -88,10 +88,10 @@ Return the review in this structure, in Markdown:
 5. **Not covered by this review**: a standing list naming the areas a screenshot review never covers: keyboard operation, screen reader names and order, focus behavior, exact contrast ratios, and behavior at high zoom. This list appears in every result, complete.
 6. A closing section, **Highest impact fixes**, listing the changes that matter most, in severity order.
 
-Finally, end the report with the tracking summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
+Finally, end the report with the summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
 
 ```
-Rubric summary, for tracking
+Rubric summary
 Rubric: Accessibility Review v1.0 · Date: {the date of this run} · Artifact: {the artifact's name as given in the request, or: not named}
 Findings: Blocker {n} · Serious {n} · Moderate {n} · Minor {n} · Criteria not judged {n}
 Result: Highest severity present: {Blocker / Serious / Moderate / Minor / None}

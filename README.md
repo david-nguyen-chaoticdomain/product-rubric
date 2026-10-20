@@ -24,7 +24,7 @@ For the product design rubrics, your AI needs to be able to see images. That is 
 
 A rubric standardizes the questions, the criteria, and the shape of the report. It cannot standardize the judgment inside the answers. What you get depends on the model you run, the material you give it, and the context you supply when it asks. Treat a result as a structured review by a capable reader, not as a measurement, and check the findings yourself before a decision rests on them. The rubrics are written to say what they could not judge; if a report hides its limits, that is a reason to distrust that run, not a reason to trust the rubric less.
 
-Every report also ends with a small tracking summary block: the rubric and its version, the date, the artifact, and the result tallied in the rubric's own terms, criteria at each grade, flaws at each rating, any gate criteria not met. Keep those blocks across runs and you can watch a team's work improve in concrete terms: criteria moving from Missing to Ready, the same gate failing less often, fewer biasing questions per survey. One run is one structured judgment and carries the noise of one. The trend across runs is the signal.
+Every report also ends with a small summary block: the rubric and its version, the date, the artifact, and the result tallied in the rubric's own terms, criteria at each grade, flaws at each rating, any gate criteria not met. Keep those blocks across runs and you can watch a team's work improve in concrete terms: criteria moving from Missing to Ready, the same gate failing less often, fewer biasing questions per survey. One run is one structured judgment and carries the noise of one. The trend across runs is the signal.
 
 ## The library
 

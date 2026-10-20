@@ -94,10 +94,10 @@ Example of a finding at the standard this rubric expects:
 - Acceptable: "Q7 (Biasing, breaks Neutral wording): 'How satisfied are you with our fast and friendly support team?' embeds the conclusion in the question; respondents rate the adjectives as much as the service. Suggested revision: 'How satisfied are you with the support you received?' with the scale unchanged."
 - Not acceptable: "Some questions are a bit leading and should be reworded." (It quotes nothing, rates nothing, and fixes nothing.)
 
-Finally, end the report with the tracking summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
+Finally, end the report with the summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
 
 ```
-Rubric summary, for tracking
+Rubric summary
 Rubric: Survey Review v1.0 · Date: {the date of this run} · Artifact: {the artifact's name as given in the request, or: not named}
 Questions: Reviewed {n} · Invalidating flaws {n} · Biasing flaws {n} · Burden flaws {n} · Sound {n}
 Result: {n} of {m} questions need revision before the survey is fielded

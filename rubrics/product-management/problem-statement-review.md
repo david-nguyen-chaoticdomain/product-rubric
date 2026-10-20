@@ -79,10 +79,10 @@ Example of a finding at the standard this rubric expects:
 - Acceptable: "Missing: the statement says 'users' throughout. The evidence sentence mentions team admins preparing reports, which is a findable person in a findable situation; the statement should claim that person or drop the evidence sentence, because as written the two halves describe different problems."
 - Not acceptable: "The problem statement could be more specific." (It names no passage and no repair.)
 
-Finally, end the report with the tracking summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
+Finally, end the report with the summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
 
 ```
-Rubric summary, for tracking
+Rubric summary
 Rubric: Problem Statement Review v1.0 · Date: {the date of this run} · Artifact: {the artifact's name as given in the request, or: not named}
 Criteria: Holds {n} · Needs work {n} · Missing {n}
 Gate criteria not met: {the criteria whose grade held the verdict below States a real problem, or: none}

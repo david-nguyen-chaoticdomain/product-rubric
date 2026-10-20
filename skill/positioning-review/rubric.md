@@ -88,10 +88,10 @@ Example of a finding at the standard this rubric expects:
 - Acceptable: "Needs work: the attributes list claims 'real-time collaboration,' but the leading alternative named in the same document ships real-time collaboration, and its help pages describe it. The attribute the evidence in this document actually supports is narrower and stronger: 'the only alternative that keeps an audit trail of every change,' which no named alternative is shown to have."
 - Not acceptable: "The positioning could be more differentiated." (It names no component, no claim, and no repair.)
 
-Finally, end the report with the tracking summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
+Finally, end the report with the summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
 
 ```
-Rubric summary, for tracking
+Rubric summary
 Rubric: Positioning Review v1.0 · Date: {the date of this run} · Artifact: {the artifact's name as given in the request, or: not named}
 Criteria: Holds {n} · Needs work {n} · Missing {n}
 Gate criteria not met: {the criteria whose grade held the verdict below Holds together, or: none}

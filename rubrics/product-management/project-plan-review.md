@@ -102,10 +102,10 @@ Example of a finding at the standard this rubric expects:
 - Acceptable: "Missing: the integration phase is estimated at three weeks with no stated basis, and the plan's own dependency list makes it the start of the critical path. The team's last two integrations took six and nine weeks. Either the estimate adopts that reference class and the date moves, or the plan states the specific differences it is relying on, so the disagreement is visible now instead of in week five."
 - Not acceptable: "The timeline seems optimistic." (It names no estimate, no basis, and no repair.)
 
-Finally, end the report with the tracking summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
+Finally, end the report with the summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
 
 ```
-Rubric summary, for tracking
+Rubric summary
 Rubric: Project Plan Review v1.0 · Date: {the date of this run} · Artifact: {the artifact's name as given in the request, or: not named}
 Criteria: Ready {n} · Needs work {n} · Missing {n} · Not judged {n}
 Gate criteria not met: {the criteria whose grade held the verdict below Ready to commit, or: none}

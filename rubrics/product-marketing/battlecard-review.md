@@ -79,10 +79,10 @@ Example of a finding at the standard this rubric expects:
 - Acceptable: "Missing: the pricing section quotes the competitor at $49 per seat with no source and no date. The competitor announced consumption pricing in March, which the card's own news link shows. Until the pricing claim is re-sourced and dated, a rep who repeats it will be corrected by the first buyer who has seen a current quote."
 - Not acceptable: "The battlecard should be kept up to date." (It names no claim, no date, and no repair.)
 
-Finally, end the report with the tracking summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
+Finally, end the report with the summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
 
 ```
-Rubric summary, for tracking
+Rubric summary
 Rubric: Battlecard Review v1.0 · Date: {the date of this run} · Artifact: {the artifact's name as given in the request, or: not named}
 Criteria: Holds {n} · Needs work {n} · Missing {n}
 Gate criteria not met: {the criteria whose grade held the verdict below Safe to put in a rep's hands, or: none}

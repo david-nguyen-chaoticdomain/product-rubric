@@ -71,10 +71,10 @@ Return the test result in this structure, in Markdown:
 3. **Likely missed**, a list of the elements with an agreement count of 0 to 2. For each: the element named specifically, its count as "n of 5," and the reason it is easy to miss.
 4. A closing section, **Highest impact fixes**, listing the changes that would most improve recall of the elements that matter most, in priority order. Draw them from the likely missed list first.
 
-Finally, end the report with the tracking summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
+Finally, end the report with the summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
 
 ```
-Rubric summary, for tracking
+Rubric summary
 Rubric: Five Second Test v1.0 · Date: {the date of this run} · Artifact: {the artifact's name as given in the request, or: not named}
 Recall: Elements recalled by 3 or more of the panel of 5 {n} · Notable elements missed {n}
 Result: Memorability {x}/10

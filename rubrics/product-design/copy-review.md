@@ -77,10 +77,10 @@ Example of a rationale at the standard this rubric expects:
 - Acceptable: "Names the outcome instead of the feature, so the button still promises the report the user came for, at the same length as the original."
 - Not acceptable: "Clearer and more engaging." (It names no criterion and nothing a reader can check.)
 
-Finally, end the report with the tracking summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
+Finally, end the report with the summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
 
 ```
-Rubric summary, for tracking
+Rubric summary
 Rubric: Copy Review v1.0 · Date: {the date of this run} · Artifact: {the artifact's name as given in the request, or: not named}
 Elements: Reviewed {n} · Revisions suggested {n} · Left as written {n}
 Result: Revisions suggested for {n} of {m} elements

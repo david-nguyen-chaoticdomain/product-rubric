@@ -90,10 +90,10 @@ Example of a finding at the standard this rubric expects:
 - Acceptable: "Needs work: the criterion 'the export loads fast' cannot be checked by anyone, because no time, data size, or device is named. The repair is a threshold a tester can hold: 'with 500 rows, the export completes within 3 seconds on a mid-range laptop,' or the criterion should be dropped and the speed concern moved to the story's notes as a hope rather than a test."
 - Not acceptable: "The acceptance criteria need work." (It names no criterion and no repair.)
 
-Finally, end the report with the tracking summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
+Finally, end the report with the summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
 
 ```
-Rubric summary, for tracking
+Rubric summary
 Rubric: User Story Review v1.0 · Date: {the date of this run} · Artifact: {the artifact's name as given in the request, or: not named}
 Criteria: Holds {n} · Needs work {n} · Missing {n} (counted across every story reviewed) · Stories reviewed {n}
 Gate criteria not met: {the criteria that most often held stories below Ready for planning, or: none}

@@ -106,10 +106,10 @@ Example of a finding at the standard this rubric expects:
 - Acceptable: "Needs work: the Success section sets a target of '20 percent more reports exported' but gives no baseline and no date. As written, the team cannot tell in the launch review whether the target was met. The repair is one sentence: the current weekly export count, the date the target is read, and the dashboard it is read from."
 - Not acceptable: "The PRD needs clearer goals." (It names no passage, no gap, and no repair.)
 
-Finally, end the report with the tracking summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
+Finally, end the report with the summary block, in exactly this form. Every value in the block is copied or counted from the judgments in this report; the block adds no new judgment of its own. It is the record a team keeps when it runs this rubric repeatedly and wants to see whether its work is improving.
 
 ```
-Rubric summary, for tracking
+Rubric summary
 Rubric: PRD Review v1.0 · Date: {the date of this run} · Artifact: {the artifact's name as given in the request, or: not named}
 Criteria: Ready {n} · Needs work {n} · Missing {n} · Not judged {n}
 Gate criteria not met: {the criteria whose grade held the verdict below Ready to build, or: none}
