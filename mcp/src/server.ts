@@ -36,8 +36,10 @@ export const ABOUT = {
   format_version: "1",
   description:
     "An open library of evaluation rubrics for product teams: " +
-    "Rubrics for AI UX audits and design evaluation in product design, and " +
-    "for study plans, surveys, and findings in product research.",
+    "rubrics for AI UX audits and design evaluation in product design; " +
+    "for study plans, surveys, findings, and competitive analysis in product research; " +
+    "for PRDs, roadmaps, problem statements, user stories, and project plans in product management; " +
+    "and for positioning, messaging, launch plans, and battlecards in product marketing.",
   author: "David Nguyen",
   author_url: "https://davidnguyen.com/",
   repository: "https://github.com/productrubric/product-rubric",
