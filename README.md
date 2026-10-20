@@ -70,7 +70,7 @@ Product marketing:
 | Launch Plan Review | Reviews a launch plan: the tier named and the effort matched to it, every audience with a message and a moment, internal teams enabled before launch day, and risk, rollback, and a slipping date planned for | Deep | Ready |
 | Battlecard Review | Reviews a competitive battlecard: claims about the competitor sourced and dated, their strengths stated honestly, why we win and why we lose both covered, and talk tracks a rep can use in the middle of a call | Simple | Ready |
 
-The `fixtures/` folder holds fictional product material made for this repository: Nexus marketing pages and app screens, two study plans written in the maintainer's own test plan formats, and a project brief, each folder with a brief and an answer key of the problems deliberately present. They give new users something to run a rubric against immediately, and they let maintainers check that a rubric edit still catches what it should.
+The `fixtures/` folder holds fictional product material made for this repository: Nexus marketing pages and app screens, two study plans written in the maintainer's own test plan formats, a project brief, and Nexus product management and product marketing documents, each folder with a brief and an answer key of the problems deliberately present. They give new users something to run a rubric against immediately, and they let maintainers check that a rubric edit still catches what it should.
 
 ## Write your own
 
