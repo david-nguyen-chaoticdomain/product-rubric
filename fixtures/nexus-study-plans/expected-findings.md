@@ -1,0 +1,19 @@
+# Expected findings: Nexus study plans
+
+The answer key for the Study Plan Review rubric, for both plans in this folder. A competent run does not need to use this list's wording; it should find the planted weaknesses below and judge the rest of each plan as the sound, ordinary planning it is. Neither plan is a disaster: each has a decision attached, a real method, and mostly measurable criteria, and a fair verdict for either is in the middle form (field after fixes), not the bottom one.
+
+## survey-test-plan.md (Nexus Onboarding - Survey Test Plan)
+
+1. **The readout is scheduled before the data exists.** Live runs November 3 to November 17, 2026, but the readout is dated November 13, 2026. Analysis would start before the reminder wave's responses arrive, and the plan never says the date is a draft readout. (Timeline, feasibility.)
+2. **One objective has no success criterion.** "Decide whether the onboarding email sequence helps or annoys" is paired with "The team feels confident about the email sequence after the readout," which names no measure, no threshold, and nothing the survey returns that could settle the decision. (Objectives.)
+3. **A hypothesis the instrument never tests.** "New admins find the pricing page confusing, and it slows down their setup" is stated as a settled fact, and no question measures pricing page confusion or setup slowdown; the only pricing question asks about fairness. Either the hypothesis goes, or a question arrives that can test it. (Hypotheses, instrument fit.)
+4. **Participants who cannot answer the questions.** The cohort includes admins who never started a project, while most questions presume a month of usage (aids used, teammates invited, experience rated). Without a screening split or a "not applicable" path, the dormant segment's answers are uninterpretable. (Participants, instrument fit.)
+5. **A leading question in the instrument.** "How much did you enjoy using Nexus in your first month?" (A lot / A little / Not at all) presupposes enjoyment and offers two degrees of it against one rejection. A plan-stage review should catch this before it is fielded. (Instrument quality.)
+6. **A double-barreled question.** "Was setting up your workspace fast and easy to understand?" (Yes / No) asks two things; an admin who found setup quick but confusing has no truthful answer, and the team cannot tell which half failed. (Instrument quality.)
+
+## usability-test-plan.md (Nexus Invite Flow - Usability Study Test Plan)
+
+1. **A task that gives away the interface.** Task 2 ("Click Invite collaborator and send an invitation to maya.chen@acmeproduct.com") names the button and dictates the address, so it measures reading, not discovery, and it contradicts the study's first-use purpose. It also duplicates Task 1, which already has the participant add Maya to the project. (Tasks.)
+2. **A success criterion that is not a criterion.** The role-accuracy objective is paired with "Observe behavior during the role task," so the study cannot conclude whether that objective passed or failed. A countable form exists in the neighboring rows ("at least 4 of 5 participants"), which makes the gap easy to fix and easy to spot. (Objectives.)
+3. **A screener that fights the study's purpose.** Screening question 3 requires participants who have already sent an invitation in Nexus, while the plan's stated design judges the flow on first use and mixes in non-customers. As written, the screener excludes exactly the first-time users the hypotheses are about. (Participants, screening.)
+4. **More session than the session holds.** Five tasks, the last of them (removing a member) outside the invite flow the plan says it is evaluating and outside the prototype states the plan lists, plus a post-study interview and a 64-word desirability exercise, in thirty minutes. The final tasks and the word exercise will be rushed or cut. (Feasibility, scope.)
