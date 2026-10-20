@@ -26,7 +26,7 @@ A rubric standardizes the questions, the criteria, and the shape of the report. 
 
 ## The library
 
-The launch library has two categories: product design, with seven rubrics that judge what a team ships, and product research, with three that judge how a team learns. Ten rubrics in total.
+The library has three categories: product design, with seven rubrics that judge what a team ships; product research, with four that judge how a team learns; and product management, with four that judge how a team decides what to build and in what order. Fifteen rubrics in total.
 
 Product design:
 
@@ -47,6 +47,16 @@ Product research:
 | Study Plan Review | Reviews a study plan before it is fielded: answerable questions, a method that fits them, the right participants | Deep | Ready |
 | Survey Review | Reviews a questionnaire question by question and suggests a corrected version of each flawed question | Standard | Ready |
 | Findings Review | Audits a research readout claim by claim, so stakeholder decisions rest on evidence rather than on summaries of it | Standard | Ready |
+| Competitive Analysis Review | Reviews a competitive analysis: whether the right competitors are in the set, the evidence is first-hand and dated, and strengths are reported honestly | Standard | Ready |
+
+Product management:
+
+| Rubric | What it does | Level | Status |
+| --- | --- | --- | --- |
+| PRD Review | Reviews a requirements document before a team builds against it: problem established, scope decidable, success measurable, open questions labeled | Deep | Ready |
+| Roadmap Review | Reviews a roadmap for outcome framing instead of feature lists, traceability to strategy, and dates that are honest about their certainty | Standard | Ready |
+| Problem Statement Review | Reviews a problem statement: a specific person, evidence it exists, the cost of doing nothing, and no solution smuggled into the framing | Simple | Ready |
+| User Story Review | Reviews a user story and its acceptance criteria against the INVEST attributes, with criteria a tester can actually check | Simple | Ready |
 
 The `fixtures/` folder holds fictional product screens made for this repository, each with a brief and an answer key of the problems deliberately present. They give new users something to run a rubric against immediately, and they let maintainers check that a rubric edit still catches what it should.
 
