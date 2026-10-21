@@ -18,7 +18,7 @@ A project can also carry its own `PRODUCTRUBRIC.md` at its root, declaring which
 
 ## Which AI should you use?
 
-For the product design rubrics, your AI needs to be able to see images. That is the normal case, and it is what the rubrics are written for. A text-only AI can only judge from a written description of the design, and the rubrics treat that as a lesser input and say so in the results. The product research rubrics judge documents (plans, questionnaires, reports), so any AI that reads text can run them. Beyond that: Simple rubrics run well on any current model, Standard rubrics are best on a current mid-tier model or better, and Deep rubrics reward a frontier model, the current top tier from OpenAI, Anthropic, or Google.
+For the product design rubrics, your AI needs to be able to see images. That is the normal case, and it is what the rubrics are written for. A text-only AI can only judge from a written description of the design, and the rubrics treat that as a lesser input and say so in the results. The UX research rubrics judge documents (plans, questionnaires, reports), so any AI that reads text can run them. Beyond that: Simple rubrics run well on any current model, Standard rubrics are best on a current mid-tier model or better, and Deep rubrics reward a frontier model, the current top tier from OpenAI, Anthropic, or Google.
 
 ## A note on results
 
@@ -28,7 +28,7 @@ Every report also ends with a small summary block: the rubric and its version, t
 
 ## The library
 
-The library has four categories: product design, with eight rubrics that judge what a team ships; product research, with four that judge how a team learns; product management, with five that judge how a team decides what to build and in what order; and product marketing, with four that judge how a team takes it to market. Twenty-one rubrics in total.
+The library has four categories: product design, with eight rubrics that judge what a team ships; UX research, with four that judge how a team learns; product management, with five that judge how a team decides what to build and in what order; and marketing, with four that judge how a team takes it to market. Twenty-one rubrics in total.
 
 Product design:
 
@@ -43,7 +43,7 @@ Product design:
 | Design Quality | Reviews a design board against seven quality dimensions, the way a design leader would in a critique | Deep | Ready |
 | Usability Heuristics Review | Evaluates a screen or flow against the ten usability heuristics published by Jakob Nielsen, reporting problems with severity ratings | Standard | Ready |
 
-Product research:
+UX research:
 
 | Rubric | What it does | Level | Status |
 | --- | --- | --- | --- |
@@ -62,7 +62,7 @@ Product management:
 | User Story Review | Reviews a user story and its acceptance criteria against the INVEST attributes, with criteria a tester can actually check | Simple | Ready |
 | Project Plan Review | Reviews a project plan before a team commits to it: verifiable milestones, estimates that take the outside view, a visible critical path, and a living register of risks, assumptions, issues, and dependencies | Deep | Ready |
 
-Product marketing:
+Marketing:
 
 | Rubric | What it does | Level | Status |
 | --- | --- | --- | --- |

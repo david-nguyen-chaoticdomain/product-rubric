@@ -37,9 +37,9 @@ export const ABOUT = {
   description:
     "An open library of evaluation rubrics for product teams: " +
     "rubrics for AI UX audits and design evaluation in product design; " +
-    "for study plans, surveys, findings, and competitive analysis in product research; " +
+    "for study plans, surveys, findings, and competitive analysis in UX research; " +
     "for PRDs, roadmaps, problem statements, user stories, and project plans in product management; " +
-    "and for positioning, messaging, launch plans, and battlecards in product marketing.",
+    "and for positioning, messaging, launch plans, and battlecards in marketing.",
   author: "David Nguyen",
   author_url: "https://davidnguyen.com/",
   repository: "https://github.com/productrubric/product-rubric",
@@ -81,7 +81,7 @@ export function buildServer(library: Library): McpServer {
       description:
         "List the evaluation rubrics available in the ProductRubric library. " +
         "Returns each rubric's id, name, category, summary, when to use it, its scale, and its level " +
-        "(simple, standard, or deep). Pass a category (for example, product-design or product-research) to filter.",
+        "(simple, standard, or deep). Pass a category (for example, product-design or ux-research) to filter.",
       inputSchema: {
         category: z
           .string()

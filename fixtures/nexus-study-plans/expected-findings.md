@@ -2,7 +2,7 @@
 
 The answer key for the Study Plan Review rubric, for both plans in this folder. A competent run does not need to use this list's wording; it should find the planted weaknesses below and judge the rest of each plan as the sound, ordinary planning it is. Neither plan is a disaster: each has a decision attached, a real method, and mostly measurable criteria.
 
-One gap applies to both plans before any of the planted items below: neither names who commissioned the study or what they already believe. Study Plan Review's Context requests require that, and without it the rubric judges Risks, bias, and ethics as Missing, which returns an overall verdict of Not ready even though every other flaw in either plan is small. The worked example (`examples/product-research/study-plan-review.md`) shows this happening and names the fix: one sentence from the planner. With that sentence supplied, a fair verdict for either plan is the middle form (field after fixes), not the bottom one.
+One gap applies to both plans before any of the planted items below: neither names who commissioned the study or what they already believe. Study Plan Review's Context requests require that, and without it the rubric judges Risks, bias, and ethics as Missing, which returns an overall verdict of Not ready even though every other flaw in either plan is small. The worked example (`examples/ux-research/study-plan-review.md`) shows this happening and names the fix: one sentence from the planner. With that sentence supplied, a fair verdict for either plan is the middle form (field after fixes), not the bottom one.
 
 ## survey-test-plan.md (Nexus Onboarding - Survey Test Plan)
 

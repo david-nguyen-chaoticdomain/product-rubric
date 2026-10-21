@@ -1,6 +1,6 @@
 ---
 name: Messaging Review
-category: product-marketing
+category: marketing
 version: 1.0
 summary: Reviews a messaging document, judging whether it leads with an insight rather than the product, engages the alternatives honestly, lets the differentiated value carry the hierarchy, attaches proof at the right strength, keeps the customer as the subject, and answers objections before closing with a clear ask.
 when_to_use: When a messaging guide, message hierarchy, or pitch narrative is about to become the words a homepage, a sales deck, and a sales team all repeat: before it is published or rolled out, when the question is whether the message itself will survive contact with a skeptical buyer.

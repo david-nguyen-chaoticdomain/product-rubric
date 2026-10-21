@@ -1,6 +1,6 @@
 ---
 name: Battlecard Review
-category: product-marketing
+category: marketing
 version: 1.0
 summary: Reviews a competitive battlecard, judging whether its claims about the competitor are sourced and dated, whether the competitor's strengths are stated honestly, whether the card arms a rep for both winning and losing ground, whether it can be used in the middle of a live call, and whether its freshness is owned.
 when_to_use: Before a battlecard is published to the sales team, and whenever one is refreshed: when the question is whether a rep can trust what it says in front of a buyer who may know the competitor better than the card does.
