@@ -1,0 +1,39 @@
+name: Label submission source
+
+# Rubric files drafted with help carry a source marker: an HTML comment
+# naming the route (the MCP authoring prompt, or the website builder).
+# This workflow reads the pull request's diff, finds the marker in an
+# added line, and applies the matching label. It never checks out or
+# runs the pull request's code; it only calls the GitHub API.
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize]
+
+permissions:
+  pull-requests: write
+  issues: write
+
+jobs:
+  label-source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Apply the source label
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          diff=$(gh pr diff "$PR_NUMBER" --repo "${{ github.repository }}")
+          label=""
+          if printf '%s' "$diff" | grep -q '^+<!-- source: mcp -->'; then
+            label="source: mcp"
+          elif printf '%s' "$diff" | grep -q '^+<!-- source: builder -->'; then
+            label="source: builder"
+          fi
+          if [ -n "$label" ]; then
+            gh api "repos/${{ github.repository }}/issues/${PR_NUMBER}/labels" -f "labels[]=$label" > /dev/null
+            echo "Applied label: $label"
+          else
+            echo "No source marker in this pull request; no label applied."
+          fi
