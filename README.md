@@ -28,7 +28,7 @@ Every report also ends with a small summary block: the rubric and its version, t
 
 ## The library
 
-The library has four categories: product design, with seven rubrics that judge what a team ships; product research, with four that judge how a team learns; product management, with five that judge how a team decides what to build and in what order; and product marketing, with four that judge how a team takes it to market. Twenty rubrics in total.
+The library has four categories: product design, with eight rubrics that judge what a team ships; product research, with four that judge how a team learns; product management, with five that judge how a team decides what to build and in what order; and product marketing, with four that judge how a team takes it to market. Twenty-one rubrics in total.
 
 Product design:
 
@@ -41,6 +41,7 @@ Product design:
 | Copy Review | Reviews interface copy element by element and suggests revisions at about the same length | Standard | Ready |
 | Attention Prediction | Predicts where attention will land on a screen, with the strongest honesty framing in the library | Simple | Ready |
 | Design Quality | Reviews a design board against seven quality dimensions, the way a design leader would in a critique | Deep | Ready |
+| Usability Heuristics Review | Evaluates a screen or flow against the ten usability heuristics published by Jakob Nielsen, reporting problems with severity ratings | Standard | Ready |
 
 Product research:
 
