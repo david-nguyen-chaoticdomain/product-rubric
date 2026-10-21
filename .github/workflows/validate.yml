@@ -1,0 +1,25 @@
+# Runs the rubric validator (scripts/validate.mjs) on every pull request,
+# so a submitted rubric is checked against FORMAT.md however it arrives:
+# through the website builder, the GitHub web editor, or a local clone.
+# The same script is what CONTRIBUTING.md asks contributors to run first.
+name: Validate rubrics
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Validate rubric files
+        run: node scripts/validate.mjs
