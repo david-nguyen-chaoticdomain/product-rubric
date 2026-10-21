@@ -38,6 +38,31 @@ Point your MCP client at the stdio command above. For the hosted copy, connect y
 
 The hosted copy is rate limited to 100 requests per minute per client IP, through the Workers Rate Limiting binding declared in `wrangler.toml`; over the limit the Worker answers 429. A normal MCP session uses a handful of requests at connect and a few per review, so the limit only trips on loops and scrapers. Counters are per Cloudflare location and eventually consistent, and the check fails open, so a limiter problem never breaks a tool call. The local stdio server has no limit.
 
+## The submission helper (submit.productrubric.com)
+
+The same Worker serves a small submission helper on the
+submit.productrubric.com hostname (src/submit.ts). It powers one-click
+submission from the builder at productrubric.com/create and the
+/handoff page, where a contributor pastes the two files their AI
+assistant prepared. In both cases the contributor signs in with GitHub
+(OAuth app "ProductRubric Submit", owned by this org), and the helper
+opens the pull request under their own account: it makes sure their
+fork exists, creates a branch, commits the rubric and the worked
+example, and opens the PR against main. The visitor's token is used
+for that one job and never stored or logged.
+
+Routes: GET / (about), GET /handoff (paste and submit), GET
+/auth/start and /auth/callback (the sign-in round trip; the token
+returns to the page in a URL fragment), POST /submit (the GitHub
+sequence, token in the Authorization header, CORS limited to
+productrubric.com).
+
+The routes stay inert until two environment values are set on the
+Worker, GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET, and the
+submit.productrubric.com custom domain is attached to the Worker.
+Until then the auth routes answer 503 and nothing else changes; the
+MCP service on mcp.productrubric.com is unaffected either way.
+
 ## Layout
 
 - `src/frontmatter.ts`: the small frontmatter reader for the rubric format.
