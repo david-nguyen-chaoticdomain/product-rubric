@@ -6,7 +6,7 @@ The MCP server for [ProductRubric](https://github.com/productrubric/product-rubr
 - `get_rubric`: the full text of one rubric file, exactly as written, for the calling AI to apply.
 - `about`: the server's identity card (version, author, licenses, library counts, links).
 
-It also offers prompts (apply a rubric, review a survey, critique a design board) and exposes every rubric as a `rubric://` resource for clients that support attaching resources.
+It also offers prompts (apply a rubric, review a survey, critique a design board, author a new rubric) and exposes every rubric as a `rubric://` resource for clients that support attaching resources.
 
 The server holds no user data, needs no API key, and never receives the material being evaluated. Evaluations run in the user's own chat, on their own AI.
 

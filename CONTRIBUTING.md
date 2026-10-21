@@ -9,6 +9,8 @@ A contribution is a pull request that adds:
 1. One rubric file in a category folder under `rubrics/`, written in the format described in `FORMAT.md`. Start from `rubrics/_template.md`.
 2. One worked example in the matching folder under `examples/`, produced by running your rubric against a fixture from `fixtures/` (or against a screen of your own, with the input described at the top of the example) and keeping the output as the rubric produced it.
 
+You do not have to write the files by hand. The builder at productrubric.com/create produces both files from a form, and the library's MCP server offers an author_a_rubric prompt that walks your own AI assistant through drafting, self-checking, and preparing the same two files. Files started either way carry a small source marker (an HTML comment naming the route), and a workflow labels the pull request to match, so the maintainer can see how each submission was made. The review is the same however the files were drafted.
+
 Adding a rubric to an existing category is the easy path. A new category folder is a bigger step, because categories define what the library is about; open an issue to talk it through with the maintainer before writing the rubric.
 
 ## The writing rule
