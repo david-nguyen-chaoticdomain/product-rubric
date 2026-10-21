@@ -13,19 +13,26 @@
  * in wrangler.toml. Counters are per Cloudflare location and eventually
  * consistent, so this is an abuse speed bump, not exact accounting. The
  * check fails open: a limiter problem must never break a tool call.
+ *
+ * The same Worker also serves the submission helper on the
+ * submit.productrubric.com hostname (see src/submit.ts): GitHub
+ * sign-in and one-click rubric submission for the builder. Those
+ * routes stay inert until the OAuth app's credentials are set in the
+ * Worker's environment and the hostname is attached.
  */
 
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
 import { Library } from "./library.js";
 import { buildServer } from "./server.js";
 import { RUBRICS } from "./rubrics.generated.js";
+import { handleSubmitHost, type SubmitEnv } from "./submit.js";
 
 /** Minimal shape of the Rate Limiting binding (see wrangler.toml). */
 interface RateLimiterBinding {
   limit(options: { key: string }): Promise<{ success: boolean }>;
 }
 
-interface Env {
+interface Env extends SubmitEnv {
   RATE_LIMITER?: RateLimiterBinding;
 }
 
@@ -59,6 +66,9 @@ export default {
     }
 
     const url = new URL(request.url);
+    if (url.hostname === "submit.productrubric.com") {
+      return handleSubmitHost(request, env);
+    }
     if (url.pathname === "/" && request.method === "GET") {
       return new Response(
         "ProductRubric MCP server. Connect an MCP client to this URL to use the list_rubrics, get_rubric, and about tools. Documentation: https://github.com/productrubric/product-rubric",
