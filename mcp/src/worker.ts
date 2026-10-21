@@ -19,13 +19,27 @@
  * sign-in and one-click rubric submission for the builder. Those
  * routes stay inert until the OAuth app's credentials are set in the
  * Worker's environment and the hostname is attached.
+ *
+ * The submit host also runs the authorization server for the MCP
+ * (see src/auth.ts). On this host, the submit_rubric tool is
+ * protected: a tools/call naming it without a valid bearer token
+ * gets a 401 pointing at the protected-resource metadata served at
+ * /.well-known/oauth-protected-resource, which is what makes an MCP
+ * client start the inline sign-in. Authorized calls run the
+ * submission with the GitHub token the bearer token seals.
  */
 
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
 import { Library } from "./library.js";
 import { buildServer } from "./server.js";
 import { RUBRICS } from "./rubrics.generated.js";
-import { handleSubmitHost, type SubmitEnv } from "./submit.js";
+import { handleSubmitHost, performSubmission, type SubmitEnv } from "./submit.js";
+import {
+  handleAuthRoutes,
+  protectedResourceMetadata,
+  unauthorizedResponse,
+  verifyAccessToken,
+} from "./auth.js";
 
 /** Minimal shape of the Rate Limiting binding (see wrangler.toml). */
 interface RateLimiterBinding {
@@ -67,7 +81,16 @@ export default {
 
     const url = new URL(request.url);
     if (url.hostname === "submit.productrubric.com") {
+      const authResponse = await handleAuthRoutes(request, env);
+      if (authResponse) return authResponse;
       return handleSubmitHost(request, env);
+    }
+    if (
+      (url.pathname === "/.well-known/oauth-protected-resource" ||
+        url.pathname === "/.well-known/oauth-protected-resource/mcp") &&
+      request.method === "GET"
+    ) {
+      return protectedResourceMetadata();
     }
     if (url.pathname === "/" && request.method === "GET") {
       return new Response(
@@ -76,7 +99,26 @@ export default {
       );
     }
 
-    const server = buildServer(embeddedLibrary());
+    const asConfigured = Boolean(env?.GITHUB_CLIENT_ID && env?.GITHUB_CLIENT_SECRET);
+    let submitter: ((input: unknown) => Promise<string>) | undefined;
+    if (asConfigured && request.method === "POST") {
+      let bodyText = "";
+      try {
+        bodyText = await request.clone().text();
+      } catch {
+        bodyText = "";
+      }
+      if (bodyText.includes('"submit_rubric"')) {
+        const ghToken = await verifyAccessToken(env, request.headers.get("authorization"));
+        if (!ghToken) return unauthorizedResponse();
+        submitter = (input: unknown) => performSubmission(fetch, ghToken, input);
+      }
+    }
+
+    const server = buildServer(embeddedLibrary(), {
+      submitEnabled: asConfigured,
+      submitter,
+    });
     const transport = new WebStandardStreamableHTTPServerTransport({
       sessionIdGenerator: undefined,
       enableJsonResponse: true,

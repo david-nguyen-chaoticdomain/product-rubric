@@ -13,12 +13,15 @@
  *
  * Routes:
  * - GET  /              a short explanation page
- * - GET  /auth/start    begin sign-in (?next=builder|handoff)
- * - GET  /auth/callback finish sign-in, hand the token back by URL
- *                       fragment to the builder or the handoff page
- * - GET  /handoff       paste-your-files page for the MCP route: the
- *                       visitor's AI prepared two files; here they
- *                       review them, sign in, and submit
+ * - GET  /auth/start    begin the builder's sign-in (?next=builder)
+ * - GET  /auth/callback finish a sign-in: the MCP authorization flow
+ *                       (see src/auth.ts) is told apart from the
+ *                       builder's flow by cookie and handed its own
+ *                       branch; the builder's token goes back by URL
+ *                       fragment
+ * - GET  /handoff       retired: redirects to the builder, whose
+ *                       Start from list now imports an AI-prepared
+ *                       draft directly
  * - POST /submit        { rubricPath, rubricContent, examplePath,
  *                       exampleContent, title, body? } with the
  *                       visitor's token -> fork, branch, two commits,
@@ -28,6 +31,8 @@
  * GITHUB_CLIENT_SECRET in the Worker's environment, the auth routes
  * answer 503 and /submit answers that sign-in is not set up.
  */
+
+import { completeAuthorizationCallback } from "./auth.js";
 
 export interface SubmitEnv {
   GITHUB_CLIENT_ID?: string;
@@ -258,6 +263,21 @@ export async function submitToGitHub(
   return pr.json.html_url as string;
 }
 
+/**
+ * Validate an untrusted submission and run it, for callers that want
+ * one call (the MCP submit_rubric tool). Throws Error with a plain
+ * message on validation failure or a failed submission.
+ */
+export async function performSubmission(
+  fetchFn: FetchFn,
+  token: string,
+  input: unknown,
+): Promise<string> {
+  const valid = validateSubmission(input);
+  if (typeof valid === "string") throw new Error(valid);
+  return submitToGitHub(fetchFn, token, valid);
+}
+
 // -------------------------------------------------------------- auth flow
 
 export function buildAuthorizeUrl(clientId: string, state: string): string {
@@ -293,56 +313,6 @@ export async function exchangeCode(
 
 // ---------------------------------------------------------------- routing
 
-const HANDOFF_INNER = `
-<h1>Submit a rubric your AI helped you write</h1>
-<p>Your AI assistant prepared two files: the rubric itself and its worked example. Paste each file's full text below, sign in with GitHub, and this page opens the submission under your own account for the maintainer to review. Nothing is stored here; the files travel from this page to GitHub when you press submit.</p>
-<label for="rp">Rubric file path</label>
-<input type="text" id="rp" placeholder="rubrics/marketing/my-rubric.md">
-<label for="rc">Rubric file</label>
-<textarea id="rc" spellcheck="false"></textarea>
-<label for="ep">Worked example file path</label>
-<input type="text" id="ep" placeholder="examples/marketing/my-rubric.md">
-<label for="ec">Worked example file</label>
-<textarea id="ec" spellcheck="false"></textarea>
-<label for="ti">Submission title</label>
-<input type="text" id="ti" placeholder="Add the my-rubric rubric">
-<p style="margin-top:26px">
-  <a class="button" id="signin" href="/auth/start?next=handoff">Sign in with GitHub</a>
-  <button id="go" disabled>Submit the rubric</button>
-</p>
-<p class="note" id="status">Sign in first; the submit button wakes up once you are back.</p>
-<script>
-  var token = null;
-  if (location.hash.indexOf("#t=") === 0) {
-    token = decodeURIComponent(location.hash.slice(3));
-    history.replaceState(null, "", location.pathname);
-    document.getElementById("go").disabled = false;
-    document.getElementById("signin").style.display = "none";
-    document.getElementById("status").textContent = "Signed in. Check the two files, then submit.";
-  }
-  document.getElementById("go").addEventListener("click", async function () {
-    var status = document.getElementById("status");
-    var body = {
-      rubricPath: document.getElementById("rp").value.trim(),
-      rubricContent: document.getElementById("rc").value,
-      examplePath: document.getElementById("ep").value.trim(),
-      exampleContent: document.getElementById("ec").value,
-      title: document.getElementById("ti").value.trim()
-    };
-    status.textContent = "Sending to GitHub. This takes a few seconds while the fork and the submission are prepared.";
-    try {
-      var res = await fetch("/submit", { method: "POST", headers: { "content-type": "application/json", authorization: "Bearer " + token }, body: JSON.stringify(body) });
-      var data = await res.json();
-      if (data.ok) {
-        status.innerHTML = "Submitted. Your pull request is open: <a href=\\"" + data.prUrl + "\\">" + data.prUrl + "</a>. The maintainer reviews every submission.";
-      } else {
-        status.innerHTML = "<span class=\\"err\\">" + (data.error || "The submission did not go through.") + "</span>";
-      }
-    } catch (e) {
-      status.innerHTML = "<span class=\\"err\\">The submission did not go through. Check your connection and try again.</span>";
-    }
-  });
-</script>`;
 
 export async function handleSubmitHost(request: Request, env: SubmitEnv): Promise<Response> {
   const url = new URL(request.url);
@@ -352,18 +322,18 @@ export async function handleSubmitHost(request: Request, env: SubmitEnv): Promis
     return page(
       "About this helper",
       `<h1>The ProductRubric submission helper</h1>
-<p>This small service signs a contributor in with GitHub and opens their rubric submission under their own account. It exists for the <a href="${BUILDER_URL}">rubric builder</a> and for contributors whose AI assistant prepared their files.</p>
+<p>This small service signs a contributor in with GitHub and opens their rubric submission under their own account. It works for the <a href="${BUILDER_URL}">rubric builder</a> and for AI assistants connected to the ProductRubric MCP, which can ask their user to sign in here and then submit the rubric from the chat.</p>
 <p>It holds no accounts and keeps nothing: a visitor's GitHub token is used for the one submission they asked for and then forgotten. The library itself lives at <a href="https://productrubric.com/">productrubric.com</a> and on <a href="https://github.com/${UPSTREAM}">GitHub</a>.</p>`,
     );
   }
 
   if (url.pathname === "/handoff" && request.method === "GET") {
-    return page("Submit a rubric", HANDOFF_INNER);
+    return new Response(null, { status: 302, headers: { location: BUILDER_URL } });
   }
 
   if (url.pathname === "/auth/start" && request.method === "GET") {
     if (!configured) return text("Sign-in is not set up yet.", 503);
-    const next = url.searchParams.get("next") === "handoff" ? "handoff" : "builder";
+    const next = "builder";
     const state = crypto.randomUUID();
     const headers = new Headers({ location: buildAuthorizeUrl(env.GITHUB_CLIENT_ID!, state) });
     const cookieOpts = "HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=600";
@@ -377,6 +347,9 @@ export async function handleSubmitHost(request: Request, env: SubmitEnv): Promis
     const code = url.searchParams.get("code");
     const state = url.searchParams.get("state");
     const jar = cookies(request);
+    if (code && state && jar.pr_as && jar.pr_as === state) {
+      return completeAuthorizationCallback(fetch, env, code, state);
+    }
     if (!code || !state || jar.pr_state !== state) {
       return page("Sign-in did not complete", `<h1>That sign-in did not complete</h1><p>The sign-in link was incomplete or out of date. Go back and start the sign-in again.</p>`, 400);
     }
@@ -386,7 +359,7 @@ export async function handleSubmitHost(request: Request, env: SubmitEnv): Promis
     } catch (e) {
       return page("Sign-in did not complete", `<h1>That sign-in did not complete</h1><p>${(e as Error).message} Go back and start the sign-in again.</p>`, 502);
     }
-    const dest = jar.pr_next === "handoff" ? `https://submit.productrubric.com/handoff#t=${encodeURIComponent(token)}` : `${BUILDER_URL}#t=${encodeURIComponent(token)}`;
+    const dest = `${BUILDER_URL}#t=${encodeURIComponent(token)}`;
     const headers = new Headers({ location: dest, "referrer-policy": "no-referrer" });
     headers.append("set-cookie", "pr_state=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0");
     headers.append("set-cookie", "pr_next=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0");

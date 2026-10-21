@@ -61,7 +61,25 @@ const INSTRUCTIONS = [
   "The server is read-only and holds no user data. The material being evaluated never passes through it; your evaluation happens here, in this conversation.",
 ].join("\n\n");
 
-export function buildServer(library: Library): McpServer {
+const SUBMIT_INSTRUCTIONS =
+  "This hosted server also offers submit_rubric: it submits a finished rubric and its worked example to the library as a pull request under the user's own GitHub account, and calling it asks the user to sign in with GitHub if they have not. Use it when the user has approved both files and is ready to submit, as the author_a_rubric prompt describes. A submission carries only those two files.";
+
+export interface BuildOptions {
+  /** Hosted server only: advertise the submit_rubric tool. */
+  submitEnabled?: boolean;
+  /** Hosted server only: run a submission with this request's GitHub token. */
+  submitter?: (input: unknown) => Promise<string>;
+}
+
+export function buildServer(library: Library, opts?: BuildOptions): McpServer {
+  const instructions = opts?.submitEnabled
+    ? INSTRUCTIONS.replace(
+        "The server is read-only and holds no user data.",
+        "The server holds no user data of its own.",
+      ) +
+      "\n\n" +
+      SUBMIT_INSTRUCTIONS
+    : INSTRUCTIONS;
   const server = new McpServer(
     {
       name: SERVER_NAME,
@@ -70,7 +88,7 @@ export function buildServer(library: Library): McpServer {
       description: ABOUT.description,
       websiteUrl: ABOUT.repository,
     },
-    { instructions: INSTRUCTIONS },
+    { instructions },
   );
 
   // ---------------------------------------------------------------- tools
@@ -196,6 +214,73 @@ export function buildServer(library: Library): McpServer {
     },
   );
 
+  if (opts?.submitEnabled) {
+    server.registerTool(
+      "submit_rubric",
+      {
+        title: "Submit a rubric",
+        description:
+          "Submit a finished rubric and its worked example to the ProductRubric library as a pull request, " +
+          "opened under the user's own GitHub account. The hosted server asks the user to sign in with GitHub " +
+          "first if they have not: the sign-in is part of calling this tool, so call it when the user is ready " +
+          "to submit and has approved both files. Arguments are the two file paths (rubrics/<category>/<id>.md " +
+          "and examples/<category>/<id>.md) and their full contents, exactly as the author_a_rubric prompt " +
+          "produces them, including the <!-- source: mcp --> marker line in the rubric. Returns the pull " +
+          "request URL. The repository validates the files as a check on the pull request and the maintainer " +
+          "reviews every submission.",
+        inputSchema: {
+          rubric_path: z.string().describe("Path of the rubric file: rubrics/<category>/<rubric-id>.md"),
+          rubric_content: z.string().describe("The full text of the rubric file."),
+          example_path: z.string().describe("Path of the worked example file: examples/<category>/<rubric-id>.md"),
+          example_content: z.string().describe("The full text of the worked example file."),
+          title: z.string().optional().describe("Optional pull request title; defaults to 'Add the <id> rubric'."),
+        },
+        annotations: {
+          readOnlyHint: false,
+          destructiveHint: false,
+          idempotentHint: false,
+          openWorldHint: true,
+        },
+      },
+      async ({ rubric_path, rubric_content, example_path, example_content, title }) => {
+        if (!opts.submitter) {
+          return {
+            isError: true,
+            content: [
+              {
+                type: "text" as const,
+                text: "Submitting needs the user to sign in with GitHub first. Ask them to connect or reconnect this server so the sign-in can happen, then call submit_rubric again.",
+              },
+            ],
+          };
+        }
+        try {
+          const prUrl = await opts.submitter({
+            rubricPath: rubric_path,
+            rubricContent: rubric_content,
+            examplePath: example_path,
+            exampleContent: example_content,
+            title,
+          });
+          return {
+            content: [
+              {
+                type: "text" as const,
+                text: `Submitted. The pull request is open: ${prUrl}. The repository runs its validator as a check on the pull request, and the maintainer reviews every submission.`,
+              },
+            ],
+            structuredContent: { pr_url: prUrl },
+          };
+        } catch (e) {
+          return {
+            isError: true,
+            content: [{ type: "text" as const, text: (e as Error).message }],
+          };
+        }
+      },
+    );
+  }
+
   // -------------------------------------------------------------- prompts
 
   server.registerPrompt(
@@ -297,7 +382,7 @@ export function buildServer(library: Library): McpServer {
     {
       title: "Author a rubric",
       description:
-        "Write a new rubric for the ProductRubric library, in the shared format, with AI help: interview, draft, self-check, worked example, and submission links.",
+        "Write a new rubric for the ProductRubric library, in the shared format, with AI help: interview, draft, self-check, worked example, and submission.",
       argsSchema: {
         idea: z
           .string()
@@ -319,7 +404,7 @@ export function buildServer(library: Library): McpServer {
               `2. Draft the rubric file to this specification. The file name is the rubric's id in lowercase kebab-case, and it will live at rubrics/<category>/<id>.md. The file opens with frontmatter carrying these fields: name; category (one of product-design, ux-research, product-management, marketing); version (1.0 for a new rubric); summary (one or two plain sentences on what the rubric judges); when_to_use; inputs (what the reviewer needs to be given); scale (the scale the report uses, in words); level (one of simple, standard, deep); author and author_url (me). When the rubric is based on a published framework, add source, source_author, and source_url. Immediately after the frontmatter, put this line exactly: <!-- source: mcp -->. Then the body, with these sections in this order: Purpose (what the rubric judges and the moment it is for); Criteria (one subsection per criterion, each with an opening line, then what to examine, what good looks like, and what bad looks like, all concrete enough for an AI to judge without guessing); Scoring (choose one pattern that fits the work: verdicts per criterion, severity ratings, a numeric score, or no score, and define every level in words); Output format (the shape of the report, which must end with a block headed "Rubric summary" holding the rubric name and version, the date, the artifact reviewed, one line per criterion with its verdict, and a result line, all derived from the review above it with no new judgment); Honesty rules (judge only what the material shows, say plainly what cannot be judged from it, and never invent facts about the artifact). When source_url is set, add a Sources section crediting the framework in my own words, linking the original, and stating that this rubric is not affiliated with or endorsed by the source. Write everything in my own words throughout: never copy a source's definitions, explanations, or examples.\n\n` +
               `3. Self-check the draft against the same rules the repository's validator runs, and fix anything that fails before showing me the file: the file name is lowercase kebab-case; every frontmatter field above is present; level is simple, standard, or deep; the category matches the folder the file will live in; the five required sections are present in the order given; a Sources section is present whenever source_url is set.\n\n` +
               `4. Produce the worked example, which every submission needs: run the finished draft against material I supply, or realistic sample material we write together and label as sample material. Keep the output as the rubric produces it, including the Rubric summary block. The example file will live at examples/<category>/<id>.md and opens with lines naming the input it ran on, the rubric and its version, and the model that produced it.\n\n` +
-              `5. Finish by giving me both files in full, then the submission links. Build each link as https://github.com/productrubric/product-rubric/new/main?filename=<the file path>&value=<the file content, URL-encoded>. I open the rubric link first, which creates the file in my fork on a new branch, then the example link, which adds the second file to the same branch, then I open the pull request against main. Tell me the repository runs the validator as a check on the pull request and that the maintainer reviews every submission. If you are running in a tool that can use the GitHub CLI, you may create the branch, both files, and the pull request directly instead; keep the <!-- source: mcp --> line in the rubric file either way, because a workflow reads it and labels the pull request with where the submission came from. There is also a no-editor route: the submission helper at https://submit.productrubric.com/handoff takes the two files pasted in, signs me in with GitHub, and opens the pull request under my account in one click. Offer it when I would rather not drive GitHub's file editor.`,
+              `5. Finish by submitting the rubric, or by handing me both files if I would rather submit them myself. If the submit_rubric tool is available to you, call it with the two files (rubric_path, rubric_content, example_path, example_content, and a title like \"Add the <id> rubric\"); it asks me to sign in with GitHub if I have not, and it opens the pull request under my own account. Give me the pull request link it returns. If submit_rubric is not available, or I would rather not sign in, give me both files in full and tell me to take them to the builder at https://productrubric.com/create and choose Import a draft in the Start from list: the form reads them in, runs the library's checks on them, and submits them in one click once I sign in there. As a last resort, build the submission links, https://github.com/productrubric/product-rubric/new/main?filename=<the file path>&value=<the file content, URL-encoded>: I open the rubric link first, which creates the file in my fork on a new branch, then the example link, which adds the second file to the same branch, then I open the pull request against main. Whichever route I take, tell me the repository runs the validator as a check on the pull request and that the maintainer reviews every submission, and keep the <!-- source: mcp --> line in the rubric file, because a workflow reads it and labels the pull request with where the submission came from. If you are running in a tool that can use the GitHub CLI, you may create the branch, both files, and the pull request directly instead.`
           },
         },
       ],
