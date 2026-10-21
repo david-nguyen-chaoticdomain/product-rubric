@@ -22,6 +22,7 @@ A project can carry its own PRODUCTRUBRIC.md at its root to declare which rubric
 | [Accessibility Review](rubrics/product-design/accessibility-review.md) | Reviews a screen's design for accessibility problems that are visible in a screenshot or description, judged against criteria derived from WCAG 2.2. | No overall score; findings rated Blocker to Minor, or Cannot judge | Standard |
 | [Attention Prediction](rubrics/product-design/attention-prediction.md) | Predicts the three places a viewer's eye will land first on a screen, in order, with positions a tool can draw as an overlay. | Exactly 3 hotspots; intensity High 70-100, Medium 40-69, Low 20-39 | Simple |
 | [Design Quality](rubrics/product-design/design-quality.md) | Reviews a design submission, a multi-frame board with its rationale, against seven dimensions of professional design quality, the way a design leader would in a critique. | 1-5 per dimension; overall 0-100 across judged dimensions | Deep |
+| [Usability Heuristics Review](rubrics/product-design/usability-heuristics-review.md) | Evaluates a screen or flow against the ten usability heuristics published by Jakob Nielsen, reporting problems with severity ratings. | No overall score; every problem rated 0-4 by severity | Standard |
 
 ## product-research
 
