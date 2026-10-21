@@ -10,6 +10,24 @@ compatibility_date = "2026-10-01"
 pattern = "mcp.productrubric.com"
 custom_domain = true
 
+# The submit host is declared here too, not only in the dashboard:
+# a deploy built from this file must describe the whole Worker,
+# or dashboard-added routes and variables can be left behind by a
+# later deploy (the Phase 3 launch hit exactly that: the MCP host's
+# deployment could not see the GitHub sign-in values, so the
+# submit_rubric tool stayed off while the submit host worked).
+[[routes]]
+pattern = "submit.productrubric.com"
+custom_domain = true
+
+# The OAuth app's client ID is a public value (it appears in every
+# sign-in URL), so it lives in the repo as a plain variable. Its
+# secret, GITHUB_CLIENT_SECRET, stays a dashboard secret and must
+# exist on the production deployment for either host to sign anyone
+# in; the code fails closed without it.
+[vars]
+GITHUB_CLIENT_ID = "Ov23liWoigkTpvA2MqVQ"
+
 # Rate limiting for the hosted server (see src/worker.ts): 100 requests
 # per minute per client IP. Counters are per Cloudflare location and
 # eventually consistent, so this is an abuse speed bump, not exact
