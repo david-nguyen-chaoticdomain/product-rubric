@@ -1,6 +1,6 @@
 ---
 name: Competitive Analysis Review
-category: product-research
+category: ux-research
 version: 1.0
 summary: Reviews a competitive analysis, judging whether the competitor set is complete, the evidence is first-hand and dated, the comparison serves the reader's decision, and competitor strengths are reported as honestly as their weaknesses.
 when_to_use: Before a competitive analysis is circulated or used to plan against: a competitor teardown, a feature comparison, or a market landscape document, when the question is whether the team can plan on what it claims.

@@ -1,6 +1,6 @@
 ---
 name: Survey Review
-category: product-research
+category: ux-research
 version: 1.0
 summary: Reviews a survey questionnaire question by question, finding the wording, scale, and ordering flaws that bias answers or make them impossible to give, and suggesting a corrected version of each flawed question.
 when_to_use: Before a survey is sent, while the questionnaire can still be changed: for satisfaction surveys, screening surveys, product feedback surveys, and any questionnaire whose results will be quoted as evidence.

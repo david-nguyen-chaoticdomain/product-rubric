@@ -1,6 +1,6 @@
 ---
 name: Findings Review
-category: product-research
+category: ux-research
 version: 1.0
 summary: Reviews a research readout, the report or summary stakeholders will read, judging whether every claim traces to evidence, whether observation and interpretation are kept apart, and whether recommendations stay proportional to what the study can support.
 when_to_use: Before a research readout is circulated: the findings deck, the summary document, or the report a team will use to decide something, when the question is whether a reader can trust what it claims.

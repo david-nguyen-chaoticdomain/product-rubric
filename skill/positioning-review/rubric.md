@@ -1,6 +1,6 @@
 ---
 name: Positioning Review
-category: product-marketing
+category: marketing
 version: 1.0
 summary: Reviews a positioning document against the five components of effective positioning, judging whether the competitive alternatives are the real ones, the unique attributes are actually unique, the value has proof, the best-fit customer is specific, and the market category is chosen rather than defaulted into.
 when_to_use: When positioning is being set or reset: a positioning document or canvas, a category decision, or the input that messaging, sales decks, and a homepage will all be built from, when the question is whether the positioning itself holds together.

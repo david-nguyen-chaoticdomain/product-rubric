@@ -1,6 +1,6 @@
 ---
 name: Launch Plan Review
-category: product-marketing
+category: marketing
 version: 1.0
 summary: Reviews a product launch plan, judging whether the launch tier is named and resourced to match, every audience has a message and a moment, internal teams are enabled rather than surprised, execution is sequenced and owned, success is instrumented before launch day, and risk, rollback, and a slipping date are all planned for.
 when_to_use: Weeks before a product or feature launch, while the plan can still change: when the question is whether this launch will land as one coordinated event or as a release the market barely notices and the support queue experiences as an ambush.

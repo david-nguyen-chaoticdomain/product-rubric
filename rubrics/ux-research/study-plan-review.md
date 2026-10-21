@@ -1,6 +1,6 @@
 ---
 name: Study Plan Review
-category: product-research
+category: ux-research
 version: 1.0
 summary: Reviews a research study plan before it is fielded, judging whether the questions are answerable, the method fits them, and the participants and materials will produce evidence the team can act on.
 when_to_use: Before recruiting begins for an interview study, a usability study, a diary study, or any planned piece of product research, when the cost of fixing the plan is still low and the cost of fielding a flawed one is not yet paid.

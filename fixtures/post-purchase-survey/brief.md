@@ -1,6 +1,6 @@
 # Fixture: post-purchase survey
 
-A fictional survey, written for this repository as test material for the Survey Review rubric (`rubrics/product-research/survey-review.md`). The worked example produced from it lives at `examples/product-research/survey-review.md`.
+A fictional survey, written for this repository as test material for the Survey Review rubric (`rubrics/ux-research/survey-review.md`). The worked example produced from it lives at `examples/ux-research/survey-review.md`.
 
 ## The fiction
 
