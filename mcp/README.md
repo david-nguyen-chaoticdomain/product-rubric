@@ -1,10 +1,12 @@
 # ProductRubric MCP server
 
-The MCP server for [ProductRubric](https://github.com/productrubric/product-rubric). It serves the library's rubric files to any MCP client through three tools:
+The MCP server for [ProductRubric](https://github.com/productrubric/product-rubric). It serves the library's rubric files to any MCP client through three read tools:
 
 - `list_rubrics`: list the available rubrics (id, name, category, summary, scale, level), optionally filtered by category.
 - `get_rubric`: the full text of one rubric file, exactly as written, for the calling AI to apply.
 - `about`: the server's identity card (version, author, licenses, library counts, links).
+
+The hosted copy also offers `submit_rubric`, which submits a finished rubric and its worked example as a pull request under the contributor's own GitHub account, after GitHub sign-in. The local package stays read-only.
 
 It also offers prompts (apply a rubric, review a survey, critique a design board, author a new rubric) and exposes every rubric as a `rubric://` resource for clients that support attaching resources.
 
@@ -37,6 +39,10 @@ Point your MCP client at the stdio command above. For the hosted copy, connect y
 `src/worker.ts` is a Cloudflare Worker (see `wrangler.toml`). It serves the shipped library only, embedded into `src/rubrics.generated.ts` by `scripts/gen-rubrics.mjs`. That generated file is a build artifact (gitignored, not committed): `npm run build` and `npm run deploy` both run the generator first. A GitHub-connected Cloudflare deploy must likewise run `npm run gen` as its build step before `wrangler deploy`.
 
 The hosted copy is rate limited to 100 requests per minute per client IP, through the Workers Rate Limiting binding declared in `wrangler.toml`; over the limit the Worker answers 429. A normal MCP session uses a handful of requests at connect and a few per review, so the limit only trips on loops and scrapers. Counters are per Cloudflare location and eventually consistent, and the check fails open, so a limiter problem never breaks a tool call. The local stdio server has no limit.
+
+## Usage statistics
+
+The hosted copy also counts aggregate usage, through `src/stats.ts` and the Analytics Engine binding declared in `wrangler.toml` (dataset `productrubric_mcp`). One data point is written per initialize, tool call, prompt get, or resource read, carrying only the tool or rubric name and the client's self-reported name and version. No user content is ever received or recorded, the extraction is a pure function, and a stats problem must never break a tool call, so the write is fail-open. The local stdio server has no stats binding.
 
 ## The submission helper and authorization server (submit.productrubric.com)
 
@@ -86,6 +92,7 @@ the local package stays read-only.
 - `src/library.ts`: the in-memory library and its two operations.
 - `src/directory.ts`: fills the library from a rubrics folder on disk.
 - `src/server.ts`: the MCP server: its tools, prompts, resources, and instructions.
+- `src/stats.ts`: aggregate usage extraction for the hosted copy only, a pure function with no I/O.
 - `src/stdio.ts`: the local entry point (`npx product-rubric-mcp`).
 - `src/submit.ts`: the submission helper: builder sign-in, the GitHub submission sequence, and validation shared by both routes.
 - `src/auth.ts`: the authorization server for MCP submission: sealed tokens, dynamic client registration, and the authorize and token endpoints.
