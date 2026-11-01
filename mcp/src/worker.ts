@@ -14,6 +14,13 @@
  * consistent, so this is an abuse speed bump, not exact accounting. The
  * check fails open: a limiter problem must never break a tool call.
  *
+ * Usage statistics: when the Analytics Engine binding declared in
+ * wrangler.toml exists, the Worker counts aggregate usage only, one
+ * data point per initialize, tool call, prompt get, or resource read,
+ * carrying only the tool or rubric name and the client's self-reported
+ * name and version. No user content is ever received or recorded, and
+ * a stats problem must never break a tool call.
+ *
  * The same Worker also serves the submission helper on the
  * submit.productrubric.com hostname (see src/submit.ts): GitHub
  * sign-in and one-click rubric submission for the builder. Those
@@ -32,6 +39,7 @@
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
 import { Library } from "./library.js";
 import { buildServer } from "./server.js";
+import { extractEvents } from "./stats.js";
 import { RUBRICS } from "./rubrics.generated.js";
 import { handleSubmitHost, performSubmission, type SubmitEnv } from "./submit.js";
 import {
@@ -46,8 +54,18 @@ interface RateLimiterBinding {
   limit(options: { key: string }): Promise<{ success: boolean }>;
 }
 
+/** Minimal shape of the Analytics Engine binding (see wrangler.toml). */
+interface StatsBinding {
+  writeDataPoint(point: {
+    indexes?: string[];
+    blobs?: string[];
+    doubles?: number[];
+  }): void;
+}
+
 interface Env extends SubmitEnv {
   RATE_LIMITER?: RateLimiterBinding;
+  STATS?: StatsBinding;
 }
 
 function embeddedLibrary(): Library {
@@ -76,6 +94,25 @@ export default {
         }
       } catch {
         // Rate limiting is best-effort only.
+      }
+    }
+
+    // Aggregate usage counts (tool, rubric id, client name and version)
+    // when the Analytics Engine binding is configured. Read from a clone
+    // so the transport still gets the untouched request, and fail open:
+    // a stats problem must never break a tool call.
+    if (request.method === "POST" && env?.STATS) {
+      try {
+        const events = extractEvents(await request.clone().text());
+        for (const event of events) {
+          env.STATS.writeDataPoint({
+            indexes: [event.kind],
+            blobs: [event.kind, event.name, event.detail],
+            doubles: [1],
+          });
+        }
+      } catch {
+        // Statistics are best-effort only.
       }
     }
 
