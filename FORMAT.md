@@ -30,6 +30,8 @@ Optional fields:
 - `author_url`: one public URL for the author, such as a website, a LinkedIn profile, or a GitHub profile. Never an email address.
 - `source_author`, `source_title`, `source_url`: the published source the rubric is based on, when one exists. Use these when the rubric adapts a method or framework that its author (or another author) has published elsewhere. A rubric based on a published source also carries a Sources section at the end of the body; see below.
 
+When no single published source covers the rubric, leave these three fields out entirely. A rubric that draws on several published sources, or on a tradition with several originators, credits each one in its Sources section instead, naming what it takes from each, and states that the grouping, examination guidance, impact scale, and reporting format are original to the rubric, that the descriptions are in the author's own words, and that it is not affiliated with or endorsed by any originator. Do not name a collection or anthology as the source author when its editor only gathered the material.
+
 ## Body sections
 
 The body has five required sections, in this order. A file that is missing a required section is malformed: the server skips it and the validation script fails it on a pull request.
@@ -98,6 +100,8 @@ List the claims the AI must not make while running this rubric. Cover what the e
 ## Sources section (optional, closing)
 
 When a rubric is based on a published source, end the file with a `## Sources` section after the honesty rules. Credit the source author and link the source. State what the rubric takes from the source and what is original to the rubric, and state plainly when the rubric is not affiliated with or endorsed by the source author or their organization.
+
+A rubric that draws on several published sources, or on a tradition with several originators, also ends with a Sources section, even though it sets no `source_url`. Credit each originator there, as described under Frontmatter.
 
 Methods, principle lists, processes, and rating scales are ideas. The words used to explain them belong to whoever wrote them. Describe public methods in your own writing and credit the source. Never paste a source's definitions, explanations, or examples into a rubric.
 

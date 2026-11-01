@@ -12,7 +12,7 @@ DESIGN.md tells an AI how to create the design. PRODUCTRUBRIC.md tells an AI how
 
 1. **Use the files directly.** Open a rubric from `rubrics/`, give it to your AI assistant along with the thing you want reviewed (a screen, a board, a study plan, a questionnaire, a readout), and ask for the evaluation. This works today, with no setup.
 2. **Install the Skills.** Each rubric also ships as an installable Skill in `skill/`, one folder per rubric, so your assistant can pick the right evaluation on its own when you describe the design you want reviewed. Install the whole pack or take a single skill.
-3. **Connect the MCP server.** The server in `mcp/` serves the same rubric files to any MCP client through three tools, `list_rubrics`, `get_rubric`, and `about`. Run it locally against your own rubrics folder, or use the hosted copy to try the shipped library with no install.
+3. **Connect the MCP server.** The server in `mcp/` serves the same rubric files to any MCP client through three read tools, `list_rubrics`, `get_rubric`, and `about`, plus a hosted-only `submit_rubric` tool. Run it locally against your own rubrics folder, or use the hosted copy to try the shipped library with no install. Reading and running a rubric needs no account and no key. Submitting one does: `submit_rubric` and the builder at productrubric.com/create open a pull request under your own GitHub account, after GitHub sign-in.
 
 A project can also carry its own `PRODUCTRUBRIC.md` at its root, declaring which rubrics the team uses, which one is the default, and how results should be reported. See this repository's own `PRODUCTRUBRIC.md` for the shape.
 

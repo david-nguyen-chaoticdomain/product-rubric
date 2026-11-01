@@ -11,6 +11,16 @@ A contribution is a pull request that adds:
 
 You do not have to write the files by hand. The builder at productrubric.com/create produces both files from a form, and the library's MCP server offers an author_a_rubric prompt that walks your own AI assistant through drafting, self-checking, and preparing the same two files. Files started either way carry a small source marker (an HTML comment naming the route), and a workflow labels the pull request to match, so the maintainer can see how each submission was made. The review is the same however the files were drafted.
 
+## How a submission is opened
+
+A finished rubric and its worked example can reach the maintainer in three ways, and the review is the same in all three.
+
+1. From an MCP client, with the hosted server's `submit_rubric` tool. The client signs the contributor in with GitHub inline, and the tool opens the pull request under the contributor's own account. The local MCP package stays read-only, so this route is hosted only.
+2. From the builder at productrubric.com/create, with Submit in one click after GitHub sign-in.
+3. By hand on GitHub: fork the repository, add the rubric file and the worked example on a branch, and open a pull request against main.
+
+In every route, both files are required, and both carry the source marker described above. No account is needed to read or run a rubric. A GitHub account is needed to submit one, because the pull request must be authored, forked, and owned so GitHub can notify its author on review, merge, or close. A merged rubric appears on the site and in the MCP on the next update.
+
 Adding a rubric to an existing category is the easy path. A new category folder is a bigger step, because categories define what the library is about; open an issue to talk it through with the maintainer before writing the rubric.
 
 ## The writing rule
@@ -28,6 +38,8 @@ Some rubrics adapt a framework that someone else published, such as a set of usa
 The file carries two different credits, because they mean two different things. The `author` fields name whoever wrote the rubric file in this repository, and that rubric text is theirs to publish under CC BY 4.0. The `source_author`, `source_title`, and `source_url` fields name the person or organization whose published framework the rubric is based on, and the file's Sources section credits them and links the original publication. The framework itself remains its author's. Licensing the rubric text under CC BY 4.0 does not license the underlying method, and the Sources section says so.
 
 Check the source's own terms before writing the rubric. Some publishers expressly invite reuse with credit, and others restrict it. Never copy the source's definitions, explanations, or examples, and never name or present the rubric in a way that suggests the source author endorses it.
+
+When no single published source covers the rubric, leave `source_author`, `source_title`, and `source_url` out entirely. Credit each originator in the Sources section instead, naming what the rubric takes from each, and state that the grouping, examination guidance, impact scale, and reporting format are original to the rubric, that the descriptions are in the author's own words, and that the rubric is not affiliated with or endorsed by any originator. Do not name a collection or anthology as the source author when its editor only gathered the material.
 
 ## Before you open the pull request
 
